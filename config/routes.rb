@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :favorites, except: [:update, :edit]
   end
 
-  resources :children do
+  resources :children, only: [:show, :index] do
     resources :booking
   end
 end
