@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  before_create :fill_profile
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,5 +8,12 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :favorites
   has_many :bookings
-  belongs_to :profile
+  has_one :profile
+
+  private
+    def fill_profile
+      if !self.profile
+        self.profile = Profile.new(user: self)
+      end
+    end
 end

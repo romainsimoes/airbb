@@ -1,15 +1,6 @@
-class ProfilesController < ApplicationController
-
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @profiles = Profile.all
-  end
+class Account::ProfilesController < ApplicationController
 
   def show
-  end
-
-  def new
     @profile = Profile.new
   end
 
@@ -35,7 +26,7 @@ class ProfilesController < ApplicationController
 
   def destroy
     @profile.destroy
-    redirect_to profiles_url
+    redirect_to profiles_path
   end
 
   private
@@ -44,7 +35,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:name, :photo, :photo_cache)
+      params.require(:profile).permit(:address, :credit_card, :description, :age, :sex)
     end
 
 end
