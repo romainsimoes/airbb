@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816114018) do
+ActiveRecord::Schema.define(version: 20160816140645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160816114018) do
     t.datetime "updated_at", null: false
     t.datetime "start_time"
     t.datetime "end_time"
+    t.integer  "child_id"
+    t.index ["child_id"], name: "index_bookings_on_child_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
 
@@ -42,9 +44,10 @@ ActiveRecord::Schema.define(version: 20160816114018) do
     t.string   "sex"
     t.string   "description"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "photo"
+    t.boolean  "active",      default: true
     t.index ["user_id"], name: "index_children_on_user_id", using: :btree
   end
 
@@ -101,6 +104,7 @@ ActiveRecord::Schema.define(version: 20160816114018) do
   end
 
   add_foreign_key "availabilities", "children"
+  add_foreign_key "bookings", "children"
   add_foreign_key "bookings", "users"
   add_foreign_key "children", "users"
   add_foreign_key "favorites", "children"
