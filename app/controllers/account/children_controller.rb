@@ -7,6 +7,7 @@ class Account::ChildrenController < ApplicationController
 
   def show
     @availabilities = Availability.all
+    @reviews = Review.all
   end
 
   def new

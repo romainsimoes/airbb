@@ -1,0 +1,8 @@
+<%= simple_form_for [@child, current_user, review], url: url do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :comment %>
+  <%= f.input :rating %>
+
+  <%= f.button :submit %>
+<% end %>
