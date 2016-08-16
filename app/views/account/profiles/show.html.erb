@@ -10,8 +10,8 @@
 
       <%= link_to 'Add a child', new_account_child_path, class:"btn btn-success" %>
 
-      <%= link_to 'Destroy', account_profile_path(@profile), class:"btn btn-medium", method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Edit', edit_account_profile_path(@profile), class:"btn btn-medium" %>
+      <%= link_to 'Delete Profile', account_profile_path(@profile), class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Edit', edit_account_profile_path(@profile), class:"btn btn-primary" %>
 
     </div>
   </div>
