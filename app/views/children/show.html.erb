@@ -5,4 +5,8 @@
 <li><%= @child.sex %></li>
 <li><%= @child.description %></li>
 
+<%= link_to 'edit', edit_account_child_path(@child) %>
+<%= link_to 'back', children_path %>
+
+<%= cl_image_tag @child.photo, height: 300, width: 400, crop: :fill %>
 
