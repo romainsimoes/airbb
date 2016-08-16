@@ -1,24 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 intertext">
+    <div class="col-md-6 col-md-offset-3 intertext text-center">
       <h1>Our Catalogue</h1>
       <h2>Discover new, inspiring babys close to your home.</h2>
+      <%= link_to "Create a new child", new_account_child_path, class:"btn btn-medium" %>
     </div>
   </div>
 </div>
 
 
-<%= link_to "create a new child", new_account_child_path %>
+
+
 <div class="container">
   <div class="row">
     <%  @children.each do |child| %>
     <div class="col-xs-12 col-md-4 col-sm-6">
      <% if child.user_id == current_user.id && child.active %>
-    <li>
-    <%= link_to child.name, account_child_path(child) %>
-    <%= link_to 'delete', account_child_path(child), method: :delete %>
-    </li>
-
      <div class="card center">
       <div class="image">
         <h3><%= child.name %></h3>
