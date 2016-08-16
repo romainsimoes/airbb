@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :profiles, except: [:index, :new]
     resources :children do
       resources :reviews, except: [:update, :edit]
+      resources :availabilities
     end
     resources :favorites, except: [:update, :edit]
   end

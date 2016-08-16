@@ -1,11 +1,12 @@
 class Account::ChildrenController < ApplicationController
-    before_action :set_child, only: [:show, :edit, :update, :destroy]
+  before_action :set_child, only: [:show, :edit, :update, :destroy]
 
   def index
     @children = Child.all.order(id: :desc)
   end
 
   def show
+    @availabilities = Availability.all
   end
 
   def new
