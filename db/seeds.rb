@@ -8,7 +8,12 @@
 
 Child.destroy_all
 
-a = User.create!(email: "hahaha@gmail.com", password: "azerty")
+a = ""
+4.times do
+  a = a + ('a'..'z').to_a.sample.to_s
+end
+
+a = User.create!(email: "#{a}@gmail.com", password: "azerty")
 
 children_attributes = [
   {
