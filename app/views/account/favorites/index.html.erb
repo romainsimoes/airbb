@@ -1,0 +1,12 @@
+<h1>Your favorites Children</h1>
+
+
+<% @favorites.each do |favorite| %>
+  <% if favorite.user_id == current_user.id %>
+    <ul>
+      <li><%= favorite.child.name %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= link_to 'back', children_path %>

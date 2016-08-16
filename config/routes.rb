@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/index'
+
   devise_for :users
 
   root to: 'pages#home'
@@ -8,10 +10,12 @@ Rails.application.routes.draw do
     resources :children do
       resources :reviews, except: [:update, :edit]
     end
-    resources :favorites, except: [:update, :edit]
+    resources :favorites, except: [:update, :edit, :create]
   end
 
   resources :children, only: [:show, :index] do
     resources :booking
+    resources :favorites, only: [:create]
+
   end
 end
