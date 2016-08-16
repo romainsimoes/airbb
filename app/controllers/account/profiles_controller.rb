@@ -31,12 +31,14 @@ class Account::ProfilesController < ApplicationController
   end
 
   private
-    def set_profile
-      @profile = Profile.find(params[:id])
-    end
 
-    def profile_params
-      params.require(:profile).permit(:address, :credit_card, :description, :age, :sex, :name)
-    end
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+
+  def profile_params
+    params.require(:profile).permit(:address, :credit_card, :description, :age, :sex, :name)
+  end
+
 
 end

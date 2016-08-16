@@ -4,4 +4,6 @@ class Child < ApplicationRecord
   has_many :reviews
   has_many :bookings
   has_many :favorites
+
+  mount_uploader :photo, PhotoUploader
 end
