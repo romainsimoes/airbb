@@ -3,14 +3,14 @@
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://hd.unsplash.com/photo-1464967493814-8aaf8fe4d622');">
   <div class="banner-content">
-     <h1>AIRBABY</h1>
-      <h2>Don't bother having one. Rent one.</h2>
-        <% if current_user %>
-        <%= link_to "See our catalogue", account_children_path, :class => "btn btn-success" %>
-        <% else %>
-        <%= link_to "See our catalogue", children_path, :class => "btn btn-success" %>
-        <% end %>
-  </div>
+   <h1>AIRBABY</h1>
+   <h2>Don't bother having one. Rent one.</h2>
+   <% if current_user %>
+   <%= link_to "See our catalogue", account_children_path, :class => "btn btn-success" %>
+   <% else %>
+   <%= link_to "See our catalogue", children_path, :class => "btn btn-success" %>
+   <% end %>
+ </div>
 </div>
 
 
@@ -36,24 +36,24 @@
 
 
     <div class="col-xs-12 col-sm-6 col-md-3">
-       <%= image_tag "baby.png" %>
-      <h2>Discover</h2>
-      <p>Discover new babys every day.</p>
-    </div>
+     <%= image_tag "baby.png" %>
+     <h2>Discover</h2>
+     <p>Discover new babys every day.</p>
+   </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-3">
-       <%= image_tag "couche.png" %>
-      <h2>Learn</h2>
-      <p>Lear to be a real father.Change Diapers.</p>
-    </div>
+   <div class="col-xs-12 col-sm-6 col-md-3">
+     <%= image_tag "couche.png" %>
+     <h2>Learn</h2>
+     <p>Lear to be a real father.Change Diapers.</p>
+   </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-3">
-       <%= image_tag "transport.png" %>
-      <h2>Ride</h2>
-      <p>Join a riding community you will love.</p>
-    </div>
+   <div class="col-xs-12 col-sm-6 col-md-3">
+     <%= image_tag "transport.png" %>
+     <h2>Ride</h2>
+     <p>Join a riding community you will love.</p>
+   </div>
 
-  </div>
+ </div>
 </div>
 
 <div id="wrapper">
@@ -66,13 +66,14 @@
     </div>
   </div>
 
-<div class="container">
-  <div class="row">
-    <%  @children.each do |child| %>
+  <div class="container">
+    <div class="row">
+      <%  @children.each do |child| %>
       <div class="col-xs-12 col-md-4 col-sm-6">
 
         <div class="card center">
           <div class="image"  style="background-image: url('<%= image_url child.photo %>')">
+
             <h3><%= child.name %></h3>
             <%= link_to '', account_child_path(child), class: 'card-link' %>
           </div>
@@ -80,35 +81,38 @@
 
           <% ratings = [] %>
           <% child.reviews.each do |review| %>
-            <% ratings << review.rating %>
+          <% ratings << review.rating %>
           <% end %>
           <% if !ratings.empty? %>
-            <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+          <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
           <% end %>
 
           <% if !ratings.empty? %>
-            <div class="rating">
-              <p><%= average_rating %></p>
-              <ul class="list-inline">
-                <% average_rating.times do |star| %>
-                  <i class="fa fa-star" style="color: #ffb400"></i>
-                <% end %>
-                <% (5 - average_rating).times do |star| %>
-                  <i class="fa fa-star" style="color: #cacccd"></i>
-                <% end %>
-              </ul>
-            </div>
+          <div class="rating">
+            <p><%= average_rating %></p>
+            <ul class="list-inline">
+              <% average_rating.times do |star| %>
+              <i class="fa fa-star" style="color: #ffb400"></i>
+              <% end %>
+              <% (5 - average_rating).times do |star| %>
+              <i class="fa fa-star" style="color: #cacccd"></i>
+              <% end %>
+            </ul>
+          </div>
           <% end %>
 
           <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
         </div>
 
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
-</div>
+
+
+
 
 
 

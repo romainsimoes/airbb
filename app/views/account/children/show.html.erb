@@ -5,6 +5,7 @@
          <%= cl_image_tag @child.photo, {transformation: [ {width: 200, height: 200, radius: "max", crop: "fill"} ]} %>
 
       <h2><%= @child.name %></h2>
+
       <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
       <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
       <p> Adress: <%= @child.address %> </p>
@@ -17,18 +18,30 @@
 <%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
 <%= link_to 'delete', account_child_path(@child), class:"btn btn-medium", method: :delete %>
 
+    </div>
+  </div>
+</div>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 padded text-center ">
+      <h2>Reviews</h2>
+        <% @reviews.each do |review| %>
+        <div class="card-review">
+        <% if review.child_id == @child.id %>
+          <p><%= review.comment %></p>
+          <p> Note <%= review.rating %>/5</p>
+        <% end %>
+
+        </div>
+        <% end %>
 
     </div>
   </div>
 </div>
 
-<% @availabilities.each do |availability| %>
-  <% if availability.child_id == @child.id %>
-    <li><%= availability.start_time %>
-    <%= availability.end_time %></li>
-  <% end %>
-<% end %>
+
 
 <% @availabilities.each do |availability| %>
   <% if availability.child_id == @child.id %>
@@ -37,12 +50,14 @@
   <% end %>
 <% end %>
 
-<% @reviews.each do |review| %>
-  <% if review.child_id == @child.id %>
-    <li><%= review.comment %>
-    <%= review.rating %></li>
+<% @availabilities.each do |availability| %>
+  <% if availability.child_id == @child.id %>
+    <li><%= availability.start_time %>
+    <%= availability.end_time %></li>
   <% end %>
 <% end %>
+
+
 
 
 
