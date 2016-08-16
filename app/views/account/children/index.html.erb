@@ -7,12 +7,17 @@
   </div>
 </div>
 
-<<<<<<< HEAD
+
+<%= link_to "create a new child", new_account_child_path %>
 <div class="container">
   <div class="row">
     <%  @children.each do |child| %>
     <div class="col-xs-12 col-md-4 col-sm-6">
-     <% if child.active %>
+     <% if child.user_id == current_user.id && child.active %>
+    <li>
+    <%= link_to child.name, account_child_path(child) %>
+    <%= link_to 'delete', account_child_path(child), method: :delete %>
+    </li>
 
      <div class="card center">
       <div class="image">
@@ -34,6 +39,7 @@
     </div>
     <% end %>
   </div>
+
   <% end %>
 </div>
 </div>
