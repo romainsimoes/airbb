@@ -3,7 +3,6 @@
 <% @children.each do |child| %>
   <li>
   <%= link_to child.name, child_path(child) %>
-  <%= link_to 'add to favorites', child_favorites_path(child), method: :post %>
   </li>
 <% end %>
 

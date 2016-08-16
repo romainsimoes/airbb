@@ -1,11 +1,13 @@
 class Account::ChildrenController < ApplicationController
-    before_action :set_child, only: [:show, :edit, :update, :destroy]
+  before_action :set_child, only: [:show, :edit, :update, :destroy]
 
   def index
     @children = Child.all.order(id: :desc)
   end
 
   def show
+    @availabilities = Availability.all
+    @reviews = Review.all
   end
 
   def new
@@ -34,7 +36,8 @@ class Account::ChildrenController < ApplicationController
   end
 
   def destroy
-    @child.destroy
+    @child.active = false
+    @child.save
     redirect_to account_children_path
   end
 

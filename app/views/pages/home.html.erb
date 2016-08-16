@@ -5,13 +5,90 @@
   <div class="banner-content">
      <h1>AIRBABY</h1>
       <h2>Don't bother having one. Rent one.</h2>
-         <%= link_to "Get your baby", "/children/new", :class => "btn btn-success" %>
+         <%= link_to "Get your baby", account_children_path, :class => "btn btn-success" %>
   </div>
 </div>
 
 
-<div class="col-md-4 col-md-offset-4 intertext">
-  <h1>Open your door to a new life for a day</h1>
-  <h2>Discover new, inspiring baby close to your home.</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 intertext">
+      <h1>Open your door to a new life for a day</h1>
+      <h2>Discover new, inspiring babys close to your home.</h2>
+    </div>
+  </div>
 </div>
+
+<div class="container text-center padded features">
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-md-3 ">
+      <%= image_tag "game.png" %>
+      <h2>Play</h2>
+      <p>Play with him like a father.</p>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+       <%= image_tag "baby.png" %>
+      <h2>Discover</h2>
+      <p>Discover new babys every day.</p>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+       <%= image_tag "couche.png" %>
+      <h2>Learn</h2>
+      <p>Lear to be a real father.Change Diapers.</p>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+       <%= image_tag "transport.png" %>
+      <h2>Ride</h2>
+      <p>Join a riding community you will love.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <%  @children.each do |child| %>
+      <div class="col-xs-12 col-md-4 col-sm-6">
+
+        <div class="card center">
+          <div class="image">
+            <h3><%= child.name %></h3>
+            <%= link_to '', account_child_path(child), class: 'card-link' %>
+          </div>
+          <h2><%= child.description %></h2>
+          <div class="rating">
+            <p>3.5</p>
+            <ul class="list-inline">
+              <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+            </ul>
+          </div>
+          <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 intertext">
+      <h1>Open your door to a new life for a day</h1>
+      <h2>Discover new, inspiring baby close to your home.</h2>
+    </div>
+  </div>
+</div>
+
+
+
 

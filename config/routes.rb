@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   namespace :account do
     resources :profiles, except: [:index, :new]
     resources :children do
+      resources :bookings
       resources :reviews, except: [:update, :edit]
+      resources :availabilities
     end
     resources :favorites, except: [:update, :edit, :create]
   end
@@ -18,4 +20,5 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create]
 
   end
+
 end

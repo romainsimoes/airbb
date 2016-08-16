@@ -7,6 +7,30 @@
 <li><%= @child.sex %></li>
 <li><%= @child.description %></li>
 
-<%= link_to 'edit', edit_account_child_path(@child) %>
+<% @availabilities.each do |availability| %>
+  <% if availability.child_id == @child.id %>
+    <li><%= availability.start_time %>
+    <%= availability.end_time %></li>
+  <% end %>
+<% end %>
 
+<% @availabilities.each do |availability| %>
+  <% if availability.child_id == @child.id %>
+    <li><%= availability.start_time %>
+    <%= availability.end_time %></li>
+  <% end %>
+<% end %>
+
+<% @reviews.each do |review| %>
+  <% if review.child_id == @child.id %>
+    <li><%= review.comment %>
+    <%= review.rating %></li>
+  <% end %>
+<% end %>
+
+<%= link_to 'add a reviews', new_account_child_review_path(@child) %>
+<%= link_to 'book me', new_account_child_booking_path(@child) %>
+<%= link_to 'edit', edit_account_child_path(@child) %>
+<%= link_to 'availabilities', new_account_child_availability_path(@child) %>
+<%= link_to 'delete', account_child_path(@child), method: :delete %>
 <%= link_to 'back', account_children_path %>
