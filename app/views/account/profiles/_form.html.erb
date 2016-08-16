@@ -1,9 +1,13 @@
 <%= simple_form_for profile, url: account_profile_path(profile) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :age %>
+  <%= f.error_notification %>
+
+  <%= f.input :name, placeholder: 'Le Petit Nicolas' %>
+  <%= f.input :address, placeholder: 'Rue de la petite Eglise' %>
+  <%= f.input :age, placeholder: 'age', as: :integer%>
+  <%= f.input :sex, placeholder: "M" %>
+  <%= f.input :description, placeholder: 'Interessé par les petits' %>
   <%= f.input :credit_card %>
-  <%= f.input :description %>
-  <%= f.input :sex %>
-  <%= f.submit %>
+  <br>
+  <%= f.button :submit, class:"btn btn-success" %>
+
 <% end %>

@@ -1,14 +1,19 @@
-<p>
-  <%= @profile.name %>
-  <%= @profile.address %>
-  <%= @profile.sex %>
-  <%= @profile.age %>
-  <%= @profile.credit_card %>
-  <%= @profile.description %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 padded ">
+      <h2><%= @profile.name %></h2>
+      <p> Adress: <%= @profile.address %> </p>
+      <p> Sex: <%= @profile.sex %> </p>
+      <p> Age: <%= @profile.age %> </p>
+      <p> Credit Card: <%= @profile.credit_card.first(2) + "*************" + @profile.credit_card.last(2) %> </p>
+      <p> Description: <%= @profile.description %> </p>
 
-<%= link_to 'Add a child', new_account_child_path %> |
+      <%= link_to 'Add a child', new_account_child_path, class:"btn btn-success" %>
 
-<%= link_to 'Destroy', account_profile_path(@profile), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Edit', edit_account_profile_path(@profile) %> |
-<%= link_to 'Back', root_path %>
+      <%= link_to 'Destroy', account_profile_path(@profile), class:"btn btn-medium", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Edit', edit_account_profile_path(@profile), class:"btn btn-medium" %>
+
+    </div>
+  </div>
+</div>
+
