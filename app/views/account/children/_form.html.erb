@@ -1,0 +1,13 @@
+<%= simple_form_for child, url: url do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.text_field :name, placeholder: 'name' %>
+  <%= f.text_field :address, placeholder: 'address' %>
+  <%= f.text_field :sex, placeholder: 'sex' %>
+  <%= f.input :age, placeholder: 'age', as: :integer%>
+  <%= f.text_field :description, placeholder: 'description' %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+
+  <%= f.button :submit %>
+<% end %>
