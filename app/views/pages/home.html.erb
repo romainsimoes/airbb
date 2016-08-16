@@ -61,18 +61,37 @@
             <%= link_to '', account_child_path(child), class: 'card-link' %>
           </div>
           <h2><%= child.description %></h2>
-          <div class="rating">
-            <p>3.5</p>
-            <ul class="list-inline">
-              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-            </ul>
-          </div>
+
+          <% ratings = [] %>
+          <% child.reviews.each do |review| %>
+            <% ratings << review.rating %>
+          <% end %>
+          <% if !ratings.empty? %>
+            <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+          <% end %>
+
+          <% if !ratings.empty? %>
+            <div class="rating">
+              <p><%= average_rating %></p>
+              <ul class="list-inline">
+                <% average_rating.times do |star| %>
+                  <i class="fa fa-star" style="color: #ffb400"></i>
+                <% end %>
+                <% (5 - average_rating).times do |star| %>
+                  <i class="fa fa-star" style="color: #cacccd"></i>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
           <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
         </div>
+
+
+
+
+
+
 
       </div>
     <% end %>
