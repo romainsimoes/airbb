@@ -6,7 +6,13 @@
 <li><%= @child.age %></li>
 <li><%= @child.sex %></li>
 <li><%= @child.description %></li>
+<% @availabilities.each do |availability| %>
+  <% if availability.child_id == @child.id %>
+    <li><%= availability.start_time %>
+    <%= availability.end_time %></li>
+  <% end %>
+<% end %>
 
 <%= link_to 'edit', edit_account_child_path(@child) %>
-
+<%= link_to 'availabilities', new_account_child_availability_path(@child) %>
 <%= link_to 'back', account_children_path %>
