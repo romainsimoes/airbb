@@ -36,7 +36,8 @@ class Account::ChildrenController < ApplicationController
   end
 
   def destroy
-    @child.destroy
+    @child.active = false
+    @child.save
     redirect_to account_children_path
   end
 
