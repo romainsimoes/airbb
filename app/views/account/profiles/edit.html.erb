@@ -1,6 +1,14 @@
-<h1>Editing Profile</h1>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 padded ">
+      <h2>Editing Profile</h2>
 <%= render 'form', profile: @profile %>
+<br>
+<%= link_to 'Profile', account_profile_path(@profile), class:"btn btn-medium" %> |
+<%= link_to 'Home', root_path, class:"btn btn-medium" %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Show', account_profile_path(@profile) %> |
-<%= link_to 'Back', root_path %>
+
+
