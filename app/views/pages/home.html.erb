@@ -72,7 +72,7 @@
       <div class="col-xs-12 col-md-4 col-sm-6">
 
         <div class="card center">
-          <div class="image">
+          <div class="image"  style="background-image: url('<%= image_url child.photo %>')">
             <h3><%= child.name %></h3>
             <%= link_to '', account_child_path(child), class: 'card-link' %>
           </div>
@@ -102,12 +102,6 @@
 
           <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
         </div>
-
-
-
-
-
-
 
       </div>
     <% end %>

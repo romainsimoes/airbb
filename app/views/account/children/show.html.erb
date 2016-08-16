@@ -1,11 +1,27 @@
-<h1><%= @child.name %></h1>
+<div class="container">
+  <div class="row">
 
-<%= cl_image_tag @child.photo, height: 300, width: 400, crop: :fill %>
+    <div class="col-sm-4 col-sm-offset-4 padded text-center ">
+         <%= cl_image_tag @child.photo, {transformation: [ {width: 200, height: 200, radius: "max", crop: "fill"} ]} %>
 
-<li><%= @child.address %></li>
-<li><%= @child.age %></li>
-<li><%= @child.sex %></li>
-<li><%= @child.description %></li>
+      <h2><%= @child.name %></h2>
+      <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
+      <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
+      <p> Adress: <%= @child.address %> </p>
+      <p> Sex: <%= @child.sex %> </p>
+      <p> Age: <%= @child.age %> </p>
+      <p> Description: <%= @child.description %> </p>
+
+
+<%= link_to 'book me', new_account_child_booking_path(@child), class:"btn btn-medium" %>
+<%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
+<%= link_to 'delete', account_child_path(@child), class:"btn btn-medium", method: :delete %>
+
+
+
+    </div>
+  </div>
+</div>
 
 <% @availabilities.each do |availability| %>
   <% if availability.child_id == @child.id %>
@@ -28,9 +44,11 @@
   <% end %>
 <% end %>
 
-<%= link_to 'add a reviews', new_account_child_review_path(@child) %>
-<%= link_to 'book me', new_account_child_booking_path(@child) %>
-<%= link_to 'edit', edit_account_child_path(@child) %>
-<%= link_to 'availabilities', new_account_child_availability_path(@child) %>
-<%= link_to 'delete', account_child_path(@child), method: :delete %>
-<%= link_to 'back', account_children_path %>
+
+
+
+
+
+
+
+
