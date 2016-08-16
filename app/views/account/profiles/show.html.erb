@@ -1,1 +1,12 @@
-show.html.erb
+<p>
+  <%= @profile.name %>
+  <%= @profile.address %>
+  <%= @profile.sex %>
+  <%= @profile.age %>
+  <%= @profile.credit_card %>
+  <%= @profile.description %>
+</p>
+
+<%= link_to 'Destroy', account_profile_path(@profile), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Edit', edit_account_profile_path(@profile) %> |
+<%= link_to 'Back', root_path %>
