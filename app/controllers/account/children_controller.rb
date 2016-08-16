@@ -45,7 +45,7 @@ class Account::ChildrenController < ApplicationController
   end
 
   def child_params
-    params.require(:child).permit(:name, :address, :age, :sex, :description)
+    params.require(:child).permit(:name, :address, :age, :sex, :description, :photo, :photo_cache)
   end
 end
 
