@@ -3,10 +3,8 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  get '/home', to: 'pages#home'
-
   namespace :account do
-    resources :profiles, except: [:index]
+    resources :profiles, except: [:index, :new]
     resources :children do
       resources :reviews, except: [:update, :edit]
     end
