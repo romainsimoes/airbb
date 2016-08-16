@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   namespace :account do
     resources :profiles, except: [:index, :new]
     resources :children do
+      resources :bookings
       resources :reviews, except: [:update, :edit]
       resources :availabilities
     end
     resources :favorites, except: [:update, :edit]
   end
 
-  resources :children, only: [:show, :index] do
-    resources :booking
-  end
+  resources :children, only: [:show, :index]
+
 end
