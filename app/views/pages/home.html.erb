@@ -5,16 +5,22 @@
   <div class="banner-content">
      <h1>AIRBABY</h1>
       <h2>Don't bother having one. Rent one.</h2>
-         <%= link_to "Get your baby", account_children_path, :class => "btn btn-success" %>
+        <% if current_user %>
+        <%= link_to "See our catalogue", account_children_path, :class => "btn btn-success" %>
+        <% else %>
+        <%= link_to "See our catalogue", children_path, :class => "btn btn-success" %>
+        <% end %>
   </div>
 </div>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 intertext">
-      <h1>Open your door to a new life for a day</h1>
-      <h2>Discover new, inspiring babys close to your home.</h2>
+<div id="wrapper">
+  <div class="container grey">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 intertext">
+        <h1>Open your door to a new life for a day</h1>
+        <h2>Discover new, inspiring baby close to your home.</h2>
+      </div>
     </div>
   </div>
 </div>
@@ -50,6 +56,16 @@
   </div>
 </div>
 
+<div id="wrapper">
+  <div class="container grey">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 intertext">
+        <h1>Open your door to a new life for a day</h1>
+        <h2>Discover new, inspiring baby close to your home.</h2>
+      </div>
+    </div>
+  </div>
+
 <div class="container">
   <div class="row">
     <%  @children.each do |child| %>
@@ -79,15 +95,8 @@
   </div>
 </div>
 
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 intertext">
-      <h1>Open your door to a new life for a day</h1>
-      <h2>Discover new, inspiring baby close to your home.</h2>
-    </div>
-  </div>
 </div>
+
 
 
 

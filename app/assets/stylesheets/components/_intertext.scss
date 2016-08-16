@@ -1,15 +1,23 @@
 .intertext {
 margin-top: 20px;
 margin-bottom: 20px;
+padding-bottom: 20px;
+padding-top: 20px;
 }
 
 .intertext h1 {
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
+  text-transform : uppercase;
 }
 
 .intertext h2 {
   text-align: center;
   font-size: 14px;
+  margin-top: 0px;
 }
 
+#wrapper {
+  background-color: #F8F9F8;
+  color: #484848;
+}
