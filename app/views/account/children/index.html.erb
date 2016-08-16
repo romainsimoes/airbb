@@ -1,13 +1,39 @@
-<h1>Children</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 intertext">
+      <h1>Our Catalogue</h1>
+      <h2>Discover new, inspiring babys close to your home.</h2>
+    </div>
+  </div>
+</div>
 
-<h2><%= link_to 'create a new child', new_account_child_path %></h2>
+<<<<<<< HEAD
+<div class="container">
+  <div class="row">
+    <%  @children.each do |child| %>
+    <div class="col-xs-12 col-md-4 col-sm-6">
+     <% if child.active %>
 
-<% @children.each do |child| %>
-  <% if child.active %>
-    <li>
-    <%= link_to child.name, account_child_path(child) %>
-    </li>
+     <div class="card center">
+      <div class="image">
+        <h3><%= child.name %></h3>
+        <%= link_to '', account_child_path(child), class: 'card-link' %>
+      </div>
+      <h2><%= child.description %></h2>
+      <div class="rating">
+        <p>3.5</p>
+        <ul class="list-inline">
+          <li><i class="fa fa-star" aria-hidden="true"></i></li>
+          <li><i class="fa fa-star" aria-hidden="true"></i></li>
+          <li><i class="fa fa-star" aria-hidden="true"></i></li>
+          <li><i class="fa fa-star" aria-hidden="true"></i></li>
+          <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+      <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
+    </div>
+    <% end %>
+  </div>
   <% end %>
-<% end %>
-
-
+</div>
+</div>
