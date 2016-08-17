@@ -3,7 +3,12 @@ class Account::ChildrenController < ApplicationController
   before_action :set_child, only: [:show, :edit, :update, :destroy]
 
   def index
-    @children = Child.all.order(id: :desc)
+    @children = Child.all
+    @children_setting = Child.where.not(latitude: nil, longitude: nil)
+    @hash = Gmaps4rails.build_markers(@children_setting) do |child, marker|
+      marker.lat child.latitude
+      marker.lng child.longitude
+    end
   end
 
   def show

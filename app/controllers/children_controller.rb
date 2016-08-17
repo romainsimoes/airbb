@@ -7,6 +7,13 @@ class ChildrenController < ApplicationController
   end
 
   def show
+    @availabilities = Availability.all
+    @reviews = Review.all
+    @child_coordinates = { lat: @child.latitude, lng: @child.longitude }
+    @hash = Gmaps4rails.build_markers(@child) do |child, marker|
+      marker.lat child.latitude
+      marker.lng child.longitude
+    end
   end
 
   private
