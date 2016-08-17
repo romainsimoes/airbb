@@ -1,69 +1,104 @@
-<div class="container">
-  <div class="row">
+<div class="card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://previews.123rf.com/images/notkoo2008/notkoo20081111/notkoo2008111100054/11224939-seamless-baby-toy-pattern--Stock-Vector-wallpaper-cartoon-bear.jpg');">
+</div>
 
-    <div class="col-sm-4 col-sm-offset-4 padded text-center ">
+<div class="container profile-page">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <div class="profile-userpic text-center">
          <%= cl_image_tag @child.photo, {transformation: [ {width: 200, height: 200, radius: "max", crop: "fill"} ]} %>
+       </div>
+       <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+          <%= @child.name %>
+        </div>
+        <div class="profile-usertitle-description">
+          <%= @child.description %>
+        </div>
 
-      <h2><%= @child.name %></h2>
+         <% ratings = [] %>
+        <% @child.reviews.each do |review| %>
+        <% ratings << review.rating %>
+        <% end %>
+        <% if !ratings.empty? %>
+        <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+        <% end %>
+        <% if !ratings.empty? %>
+        <p><% average_rating %></p>
+        <ul class="list-inline text-center">
+          <% average_rating.times do |star| %>
+          <i class="fa fa-star" style="color: #ffb400"></i>
+          <% end %>
+          <% (5 - average_rating).times do |star| %>
+          <i class="fa fa-star" style="color: #cacccd"></i>
+          <% end %>
+        </ul>
+        <% end %>
 
-      <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
-      <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
+
+
+      </div>
+
+
+
+
+      <div class="small-button">
+        <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
+        <%= link_to 'Delete', account_child_path(@child), class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5 ">
+    <h3>INFORMATIONS</h3>
+    <div class="user-infos ">
       <p> Adress: <%= @child.address %> </p>
       <p> Sex: <%= @child.sex %> </p>
       <p> Age: <%= @child.age %> </p>
       <p> Description: <%= @child.description %> </p>
-
-
-<%= link_to 'book me', new_account_child_booking_path(@child), class:"btn btn-medium" %>
-<%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
-<%= link_to 'delete', account_child_path(@child), class:"btn btn-medium", method: :delete %>
-
     </div>
+
+    <div class="small-button">
+      <%= link_to 'book me', new_account_child_booking_path(@child), class:"btn btn-medium" %>
+      <%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <h3>REVIEWS</h3>
+    <% @reviews.each do |review| %>
+    <div class="card-review">
+      <% if review.child_id == @child.id %>
+      <p><%= review.comment %></p>
+      <p> Note <%= review.rating %>/5</p>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="small-button">
+      <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
+    </div>
+
   </div>
 </div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4 padded text-center ">
-      <h2>Reviews</h2>
-        <% @reviews.each do |review| %>
-        <div class="card-review">
-        <% if review.child_id == @child.id %>
-          <p><%= review.comment %></p>
-          <p> Note <%= review.rating %>/5</p>
-        <% end %>
-
-        </div>
-        <% end %>
-
-    </div>
-  </div>
 </div>
 
+<div id="map" style="width: 100%; height: 600px;"></div>
 
-
-<% @availabilities.each do |availability| %>
-  <% if availability.child_id == @child.id %>
-    <li><%= availability.start_time %>
-    <%= availability.end_time %></li>
-  <% end %>
+<% content_for(:after_js) do %>
+<%= javascript_tag do %>
+$(document).on('ready', function() {
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: { id: 'map' } }, function() {
+markers = handler.addMarkers(<%= raw @hash.to_json %>);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
+if (markers.length == 0) {
+handler.getMap().setZoom(2);
+} else if (markers.length == 1) {
+handler.getMap().setZoom(14);
+}
+});
+});
 <% end %>
-
-<% @availabilities.each do |availability| %>
-  <% if availability.child_id == @child.id %>
-    <li><%= availability.start_time %>
-    <%= availability.end_time %></li>
-  <% end %>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-

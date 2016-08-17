@@ -99,6 +99,7 @@
   border: 1px solid #E6E6E6;
   border-radius: 5px;
   padding: 0 10px;
+
   font-size: 14px;
   outline: none;
 }
@@ -168,8 +169,15 @@
 /* <----------------banner content ---------------->*/
 
 .banner-content {
+<<<<<<< HEAD
   margin-top: 85px;
   color: white;
+=======
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+>>>>>>> 9ab981e27a3e37683aded9d923eecb5a71d4c77f
 }
 
 .banner-content h1 {
