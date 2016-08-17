@@ -27,7 +27,9 @@
       <div class="nvb-item">
         <div class="dropdown">
           <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle" %>
-          <img src="http://magazineportrait.com/wp-content/uploads/2016/06/kim-rusk-50x50.jpg" class="avatar dropdown-toggle" id="nvb-menu" data-toggle="dropdown">
+          <% if user_signed_in? && current_user.facebook_picture_url %>
+          <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
             <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
@@ -182,7 +184,9 @@
           </div>
           <% end %>
 
-          <img src="https://unsplash.it/60?image=717" alt="" class="card-user avatar">
+          <% if user_signed_in? && current_user.facebook_picture_url %>
+          <%= image_tag current_user.facebook_picture_url, class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
+          <% end %>
         </div>
 
       </div>
