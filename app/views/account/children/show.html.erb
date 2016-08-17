@@ -15,7 +15,33 @@
         <div class="profile-usertitle-description">
           <%= @child.description %>
         </div>
+
+         <% ratings = [] %>
+        <% @child.reviews.each do |review| %>
+        <% ratings << review.rating %>
+        <% end %>
+        <% if !ratings.empty? %>
+        <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+        <% end %>
+        <% if !ratings.empty? %>
+        <p><% average_rating %></p>
+        <ul class="list-inline text-center">
+          <% average_rating.times do |star| %>
+          <i class="fa fa-star" style="color: #ffb400"></i>
+          <% end %>
+          <% (5 - average_rating).times do |star| %>
+          <i class="fa fa-star" style="color: #cacccd"></i>
+          <% end %>
+        </ul>
+        <% end %>
+
+
+
       </div>
+
+
+
+
       <div class="small-button">
         <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
         <%= link_to 'Delete', account_child_path(@child), class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
