@@ -1,9 +1,11 @@
+
 <%= simple_form_for availability, url: url do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :price %>
+
   <%= f.input :start_time %>
   <%= f.input :end_time %>
+  <%= f.input :price %>
 
-  <%= f.button :submit %>
+  <%= f.button :submit, class:"btn btn-success" %>
 <% end %>
