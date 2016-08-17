@@ -11,12 +11,12 @@
 
 <div class="container">
   <div class="row" id="children_list">
-
+    <%= render 'cards' %>
   </div>
 </div>
 
 
-<div id="map" style="width: 100%; height: 200px;"></div>
+<div id="map" style="width: 100%; height: 200px;" data-children="<%= @children.to_json %>"></div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -34,15 +34,27 @@
       });
 
       var map = handler.getMap();
-      google.maps.event.addListener(map, 'bounds_changed', function(e) {
+      google.maps.event.addListener(map, 'dragend', function(e) {
         window.setTimeout(function() {
           cLat = map.getCenter().lat();
           cLng = map.getCenter().lng();
           cPoint = [cLat, cLng];
           cBounds = map.getBounds();
 
+          $.ajax({
+            url : 'http://localhost:3000/account/children.js?center='+ cPoint,
+            type: "GET",
+            success: function(data) {
+              console.log('coucou');
+              $('#children_list').html(data);
+            },
+            error: function(e) {
+              $('#children_list').html(e.responseText);
+            }
+          });
 
-        }, 3000);
+
+        }, 300);
       });
 
     });
