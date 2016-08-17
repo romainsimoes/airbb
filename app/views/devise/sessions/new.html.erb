@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-5 padded ">
       <h2>Login</h2>
-
+      <br>
+      <a class="btn-primary btn", href="/users/auth/facebook">Log in with Facebook</a>
+      <br>
+      <br>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
@@ -31,5 +34,7 @@
     </div>
   </div>
 </div>
+
+
 
 
