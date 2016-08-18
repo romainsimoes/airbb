@@ -36,9 +36,6 @@
       var map = handler.getMap();
       google.maps.event.addListener(map, 'dragend', function(e) {
         window.setTimeout(function() {
-          cLat = map.getCenter().lat();
-          cLng = map.getCenter().lng();
-          cPoint = [cLat, cLng];
           bPointsNELat = map.getBounds().getNorthEast().lat();
           bPointsSWLat = map.getBounds().getSouthWest().lat();
           bPointsNELng = map.getBounds().getNorthEast().lng();
