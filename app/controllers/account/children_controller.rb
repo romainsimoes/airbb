@@ -16,7 +16,7 @@ class Account::ChildrenController < ApplicationController
       marker.lng child.longitude
     end
     respond_to do |format|
-      format.html
+      format.html { render 'index', layout: 'children' }
       format.js  { render '_cards' }
     end
   end

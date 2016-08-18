@@ -1,16 +1,49 @@
 .card {
   background-color: white;
-  border: 1px solid #D3D3D3;
   height: 215px;
   width: 310px;
   position: relative;
   border-radius: 5px;
-  box-shadow: 3px 3px 5px #dedede;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 5px;
   margin-right: 5px;
 }
+
+.card-map {
+  background-color: white;
+  height: 215px;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.card-map h2 {
+  position: absolute;
+  color: rgb(165, 165, 165);
+  bottom: 33px;
+  left: 15px;
+  font-size: 12px;
+  margin: 0;
+}
+.card-map h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+
+.card-map > .card-user {
+  border: 2.5px solid white;
+  position: absolute;
+  bottom: 32px;
+  right: 17px;
+  z-index: 1;
+}
+
 .image {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   height: 72%;
