@@ -21,6 +21,7 @@
 <% content_for(:after_js) do %>
   <script>
     $(document).on('ready', function() {
+      if ()
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
