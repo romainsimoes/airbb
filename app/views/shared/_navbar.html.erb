@@ -30,6 +30,8 @@
       <div class="dropdown">
         <% if user_signed_in? && current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
+          <% else %>
+            <img src="http://rhone-alpes.nouscitoyens.fr/wp-content/uploads/sites/2/2014/11/avatar-profil-facebook-1.jpg" id="nvb-menu" data-toggle="dropdown" class="avatar-large dropdown-toggle">
         <% end %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li><a href="#">Profile</a></li>

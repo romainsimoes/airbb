@@ -34,13 +34,7 @@
           <% end %>
         </ul>
         <% end %>
-
-
-
       </div>
-
-
-
 
       <div class="small-button">
         <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
@@ -63,24 +57,22 @@
       <%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
     </div>
 
-  </div>
-  <div class="col-md-4">
-    <h3>REVIEWS</h3>
-    <% @reviews.each do |review| %>
-    <div class="card-review">
-      <% if review.child_id == @child.id %>
-      <p><%= review.comment %></p>
-      <p> Note <%= review.rating %>/5</p>
+    </div>
+      <div class="col-md-4">
+      <h3>REVIEWS</h3>
+      <% @reviews.each do |review| %>
+        <div class="card-review">
+          <% if review.child_id == @child.id %>
+          <p><%= review.comment %></p>
+          <p> Note <%= review.rating %>/5</p>
+          <% end %>
+        </div>
       <% end %>
+      <div class="small-button">
+        <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
+      </div>
     </div>
-    <% end %>
-
-    <div class="small-button">
-      <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
-    </div>
-
   </div>
-</div>
 </div>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
