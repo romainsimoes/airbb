@@ -64,3 +64,4 @@ source 'https://rails-assets.org' do
 end
 
 gem 'omniauth-facebook'
+gem 'bootstrap-datepicker-rails'

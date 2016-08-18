@@ -16,6 +16,12 @@
 
         <div class="card center">
           <div class="image"  style="background-image: url('<%= image_url child.photo %>')">
+
+
+          <%= link_to child.user_favorite?(current_user.id) ? 'javascript:void(0)' : child_favorites_path(child), method: :post do %>
+            <div class="card-favorite <%= 'favorite' if child.user_favorite?(current_user.id) %>" data-child="<%=child.id %>"><i class="fa fa-heart" aria-hidden="true"></i></div>
+          <% end %>
+
             <h3><%= child.name %></h3>
             <%= link_to '', account_child_path(child), class: 'card-link' %>
           </div>
@@ -43,10 +49,41 @@
             </div>
           <% end %>
 
+
           <%= image_tag child.user.facebook_picture_url || '', class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
+
         </div>
 
       </div>
     <% end %>
   </div>
 </div>
+
+<% content_for :after_js do %>
+<script>
+  $(document).ready(function(){
+    $('.favorite').click(function(e) {
+      e.preventDefault();
+      var card = $(e.target).parent();
+      var child_id = card.data('child');
+      var favorite_url = card.attr('href');
+      deleteFavorite(child_id, function() {
+        $('.favorite[data-child="'+ child_id + '"').removeClass('favorite');
+        card.parent().attr('href', '/children/' + child_id + '/favorites');
+      });
+    })
+
+  });
+
+  function deleteFavorite(child_id, callback) {
+    $.ajax({
+      type: "delete",
+      url: "/account/favorites/" + child_id + '.json',
+      success: function(data) {
+        console.log(data);
+        callback();
+      }
+    });
+  }
+</script>
+<% end %>

@@ -6,7 +6,7 @@
     <ul>
       <li>
       <%= favorite.child.name %>
-      <%= link_to "delete",
+      <%= link_to "delete", account_favorite_path(favorite.child), method: :delete %>
       </li>
     </ul>
   <% end %>
