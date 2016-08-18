@@ -27,7 +27,7 @@ class Account::ProfilesController < ApplicationController
   end
 
   def destroy
-    @profile.destroy
+    @profile.delete
     redirect_to root_path
   end
 

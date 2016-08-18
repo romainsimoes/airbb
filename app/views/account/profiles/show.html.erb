@@ -43,13 +43,14 @@
       </div>
     </div>
 
-    <div class="col-md-4">
-        <h3>My babys</h3>
+    <div class="col-md-4 text-inline">
+        <h3>MY BABYS</h3>
           <% @children.each do | child |%>
            <% if child.user == current_user %>
 
-            <div class="card-small-image"  style="background-image: url('<%= image_url child.photo %>')">.</div>
-
+            <div class="card-small-image"  style="background-image: url('<%= image_url child.photo %>')">
+                <%= link_to '', account_child_path(child), class: 'card-link' %>
+            </div>
         <% end %>
         <% end %>
     <div class="small-button">

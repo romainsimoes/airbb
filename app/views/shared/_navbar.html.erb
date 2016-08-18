@@ -27,7 +27,7 @@
         <% end %>
 
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><%= link_to 'Profile' %></li>
+          <li><%= link_to 'Profile', account_profile_path(current_user.profile) %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
@@ -39,8 +39,6 @@
         <li><%= link_to 'Log in', new_user_session_path, class:"navbar-wagon navbar-wagon-btn" %></li>
       </ul>
     <% end %>
-
-
   </div>
 
   <!-- Dropdown appearing on mobile only -->

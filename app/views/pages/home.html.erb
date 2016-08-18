@@ -14,8 +14,8 @@
           <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle" %>
           <% if user_signed_in? && current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
-            <% else %>
-            <img src="http://rhone-alpes.nouscitoyens.fr/wp-content/uploads/sites/2/2014/11/avatar-profil-facebook-1.jpg" id="nvb-menu" data-toggle="dropdown" class="avatar-large dropdown-toggle">
+          <% else %>
+          <img src="http://rhone-alpes.nouscitoyens.fr/wp-content/uploads/sites/2/2014/11/avatar-profil-facebook-1.jpg" id="nvb-menu" data-toggle="dropdown" class="avatar-large dropdown-toggle">
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
             <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
@@ -26,28 +26,28 @@
       <% else %>
       <ul class="list-inline">
         <li><%= link_to 'Add a Child', new_user_session_path, class:"btn btn-rectangle" %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path, class:"btn btn-medium" %></li>
-        <li><%= link_to 'Log in', new_user_session_path, class:"btn btn-medium" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class:" btn-medium-white" %></li>
+        <li><%= link_to 'Log in', new_user_session_path, class:" btn-medium-white" %></li>
       </ul>
       <% end %>
 
     </div>
 
-      <!-- Dropdown appearing on mobile only -->
+    <!-- Dropdown appearing on mobile only -->
 
     <div class="nvb-item hidden-md hidden-lg">
       <div class="dropdown">
         <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
-        <% if current_user %>
+          <% if current_user %>
           <li><%= link_to 'Add a Child', new_account_child_path %></li>
           <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-        <% else %>
+          <% else %>
           <li><%= link_to 'Add a Child', new_user_session_path %></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
-        <% end %>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -171,9 +171,7 @@
           </div>
           <% end %>
 
-          <% if user_signed_in? && current_user.facebook_picture_url %>
-          <%= image_tag current_user.facebook_picture_url, class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
-          <% end %>
+          <%= image_tag child.user.facebook_picture_url || '', class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
         </div>
 
       </div>
