@@ -5,13 +5,14 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new
     @favorite.user_id = current_user.id
     @favorite.child_id = @child
+
     if Favorite.where(child_id: @favorite.child_id, user: @favorite.user_id).any?
       flash[:alert] = "Already added"
       redirect_to children_path
     else
       @favorite.save
       flash[:notice] = "Child successfully added"
-      redirect_to account_favorites_path
+      redirect_to children_path
     end
   end
 

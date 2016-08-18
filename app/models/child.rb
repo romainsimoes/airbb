@@ -10,4 +10,8 @@ class Child < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   mount_uploader :photo, PhotoUploader
+
+  def user_favorite?(user_id)
+    favorites.all.map(&:user_id).include?(user_id)
+  end
 end
