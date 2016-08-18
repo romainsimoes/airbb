@@ -28,8 +28,8 @@
           handler.getMap().setCenter({lat: <%= @center ? @center.latitude : 0 %>, lng: <%= @center ? @center.longitude : 0 %>});
           if (markers.length == 0) {
             handler.getMap().setZoom(2);
-          } else if (markers.length == 1) {
-            handler.getMap().setZoom(25);
+          } else {
+            handler.getMap().setZoom(11);
           }
         });
 
