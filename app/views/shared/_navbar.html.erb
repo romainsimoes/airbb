@@ -1,49 +1,40 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
-    <%= image_tag "baby_logo.png" %>
-    <p>airbaby</p>
-  </a>
+  <a href="/" class="navbar-wagon-brand-btn navbar-wagon-brand-btn"><%= image_tag "baby_logo.png" %></a>
+
+
+    <form action="" class="navbar-wagon-search">
+        <input type="text" id="text" class="navbar-wagon-search-input" placeholder="Search for a child">
+    </form>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-
 
     <!-- Notification link-->
-    <a href="" class="navbar-wagon-item navbar-wagon-link">
-      <div class="badge-container">
-        <i class="fa fa-envelope-o"></i>
-        <div class="badge badge-blue">3</div>
-      </div>
-    </a>
-
-    <!-- Profile picture and dropdown -->
-    <div class="navbar-wagon-item">
+    <% if current_user %>
+    <div class="navbar-wagon-item padding-plus-navbar-item">
       <div class="dropdown">
-        <img src="https://magazineportrait.com/wp-content/uploads/2016/06/kim-rusk-50x50.jpg" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+
+      <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle-navbar" %>
+        <% if user_signed_in? && current_user.facebook_picture_url %>
+          <%= image_tag current_user.facebook_picture_url, class:"avatar dropdown-toggle", id: "navbar-wagon-menu", 'data-toggle' => "dropdown"  %>
+        <% end %>
+
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><%= link_to 'Profile' %></li>
+          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
     </div>
-
-    <!-- Button (call-to-action) -->
-    <% if current_user %>
-    <%= link_to 'Log out', destroy_user_session_path, class:"btn btn-medium", method: :delete %>
-    <%= link_to 'Profile', account_profile_path(current_user), class:"btn btn-medium" %>
     <% else %>
-    <%= link_to 'Log in', new_user_session_path, class:"btn btn-medium" %>
+      <ul class="list-inline list-inline-padding">
+        <li><%= link_to 'Add a Child', new_user_session_path, class:"navbar-wagon navbar-wagon-btn", id: "border" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class:"navbar-wagon navbar-wagon-btn" %></li>
+        <li><%= link_to 'Log in', new_user_session_path, class:"navbar-wagon navbar-wagon-btn" %></li>
+      </ul>
     <% end %>
+
 
   </div>
 
@@ -52,9 +43,15 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+      <% if current_user %>
+        <li><%= link_to 'Add a Child', new_account_child_path %></li>
+        <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
+        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Add a Child', new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Log in', new_user_session_path %></li>
+      <% end %>
       </ul>
     </div>
   </div>

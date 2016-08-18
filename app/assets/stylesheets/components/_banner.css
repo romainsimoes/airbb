@@ -144,7 +144,7 @@
   border-top: 1px solid #E6E6E6;
 }
 
-.dropdown i {
+.nvb-dropdown i {
   color: white;
 }
 
@@ -192,9 +192,9 @@
 /* <----------------settings form bootstrap ---------------->*/
 
 .form-inline .form-control {
-    display: inline-block;
-    width: 100%;
-    vertical-align: middle;
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
 }
 
 
