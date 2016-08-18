@@ -1,3 +1,26 @@
+<div class="input-daterange input-group" id="datepicker">
+    <input type="text" class="input-sm form-control" name="start" />
+    <span class="input-group-addon">to</span>
+    <input type="text" class="input-sm form-control" name="end" />
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).on('ready', function() {
+
+      $('#datepicker.input-daterange').datepicker({
+        format: "dd/mm/yy",
+        todayBtn: "linked",
+        multidateSeparator: "to ",
+        todayHighlight: true,
+        datesDisabled: ['08/06/2016', '08/21/2016'],
+        toggleActive: true
+      });
+
+    });
+  </script>
+<% end %>
+
 <%= simple_form_for [@child, current_user, booking], url: url do |f| %>
   <%= f.error_notification %>
 
@@ -6,8 +29,8 @@
     TO: <%= availability.end_time %></li>
   <% end %>
 
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
+  <%= f.date_select :start_time %>
+  <%= f.date_select :end_time %>
 
   <%= f.button :submit, class:"btn btn-success" %>
 <% end %>
