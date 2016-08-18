@@ -11,15 +11,15 @@
 
 <div class="container">
   <div class="row" id="children_list">
-
+    <%= render 'cards' %>
   </div>
 </div>
 
 
-<div id="map" style="width: 100%; height: 200px;"></div>
+<div id="map" style="width: 100%; height: 200px;" data-children="<%= @children.to_json %>"></div>
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
+  <script>
     $(document).on('ready', function() {
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
@@ -34,17 +34,33 @@
       });
 
       var map = handler.getMap();
-      google.maps.event.addListener(map, 'bounds_changed', function(e) {
+      google.maps.event.addListener(map, 'dragend', function(e) {
         window.setTimeout(function() {
           cLat = map.getCenter().lat();
           cLng = map.getCenter().lng();
           cPoint = [cLat, cLng];
-          cBounds = map.getBounds();
+          bPointsNELat = map.getBounds().getNorthEast().lat();
+          bPointsSWLat = map.getBounds().getSouthWest().lat();
+          bPointsNELng = map.getBounds().getNorthEast().lng();
+          bPointsSWLng = map.getBounds().getSouthWest().lng();
+
+          bPoints = [bPointsSWLat, bPointsSWLng, bPointsNELat, bPointsNELng];
+
+          $.ajax({
+            url : '/account/children.js?bounds=' + bPoints,
+            type: "GET",
+            success: function(data) {
+              $('#children_list').html(data);
+            },
+            error: function(e) {
+              $('#children_list').html(e.responseText);
+            }
+          });
 
 
-        }, 3000);
+        }, 300);
       });
 
     });
-  <% end %>
+  </script>
 <% end %>

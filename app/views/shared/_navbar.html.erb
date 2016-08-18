@@ -15,9 +15,12 @@
     <% if current_user %>
     <div class="navbar-wagon-item padding-plus-navbar-item">
       <div class="dropdown">
+
       <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle-navbar" %>
-        <img src="http://magazineportrait.com/wp-content/uploads/2016/06/kim-rusk-50x50.jpg" id="navbar-wagon-menu"
-        class="avatar dropdown-toggle" data-toggle="dropdown">
+        <% if user_signed_in? && current_user.facebook_picture_url %>
+          <%= image_tag current_user.facebook_picture_url, class:"avatar dropdown-toggle", id: "navbar-wagon-menu", 'data-toggle' => "dropdown"  %>
+        <% end %>
+
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li><%= link_to 'Profile' %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>

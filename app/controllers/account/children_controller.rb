@@ -3,11 +3,19 @@ class Account::ChildrenController < ApplicationController
   before_action :set_child, only: [:show, :edit, :update, :destroy]
 
   def index
-    @children = Child.all
+    #fail (params[:boundsL] + ' :::: ' + params[:boundsR]).inspect if params[:boundsL]
+    bounds = params[:bounds].split(',') if params[:bounds]
+    #center = params[:center] ? params[:center].split(',') : [0,0]
+    #center = params[:center].split(',')
+    @children = Child.within_bounding_box(bounds)
     @children_setting = Child.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(@children_setting) do |child, marker|
       marker.lat child.latitude
       marker.lng child.longitude
+    end
+    respond_to do |format|
+      format.html
+      format.js  { render '_cards' }
     end
   end
 
