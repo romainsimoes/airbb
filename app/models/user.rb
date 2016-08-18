@@ -6,11 +6,11 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :children
-  has_many :reviews
-  has_many :favorites
-  has_many :bookings
-  has_one :profile
+  has_many :children, dependent: :destroy
+  has_many :reviews, dependent: :nullify
+  has_many :favorites, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
 
 def self.find_for_facebook_oauth(auth)

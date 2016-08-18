@@ -27,14 +27,16 @@ class Account::ProfilesController < ApplicationController
   end
 
   def destroy
-    @profile.delete
+    user = current_user
+    sign_out current_user
+    user.destroy
     redirect_to root_path
   end
 
   private
 
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by(id: params[:id])
   end
 
   def profile_params
