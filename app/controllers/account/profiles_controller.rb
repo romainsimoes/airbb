@@ -3,6 +3,7 @@ class Account::ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def show
+    @children = Child.all
   end
 
   def edit

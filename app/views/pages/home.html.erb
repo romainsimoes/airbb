@@ -1,5 +1,3 @@
-
-
 <div class="banner">
   <div class="nvb">
 
@@ -16,6 +14,8 @@
           <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle" %>
           <% if user_signed_in? && current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
+            <% else %>
+            <img src="http://rhone-alpes.nouscitoyens.fr/wp-content/uploads/sites/2/2014/11/avatar-profil-facebook-1.jpg" id="nvb-menu" data-toggle="dropdown" class="avatar-large dropdown-toggle">
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
             <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
@@ -145,7 +145,6 @@
 
         <div class="card center">
           <div class="image"  style="background-image: url('<%= image_url child.photo %>')">
-
             <h3><%= child.name %></h3>
             <%= link_to '', account_child_path(child), class: 'card-link' %>
           </div>
@@ -161,7 +160,6 @@
 
           <% if !ratings.empty? %>
           <div class="rating">
-            <p><%= average_rating %></p>
             <ul class="list-inline">
               <% average_rating.times do |star| %>
               <i class="fa fa-star" style="color: #ffb400"></i>
