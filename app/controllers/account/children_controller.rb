@@ -57,7 +57,7 @@ class Account::ChildrenController < ApplicationController
   end
 
   def destroy
-    @child.delete
+    @child.destroy
     @child.save
     redirect_to account_profile_path(@child.user.profile)
   end

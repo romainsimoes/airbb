@@ -19,6 +19,7 @@
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
             <li><%= link_to 'Profile', account_profile_path(current_user.profile) %></li>
+            <li><%= link_to 'Favorites', account_profile_path(current_user) %></li> <!-- TODO FRANCOIS-->
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
@@ -59,7 +60,7 @@
   </div>
 
   <div class="search-field hidden-xs">
-    <p>Recherchez parmi plus de 2 millions d'enfants dans plus de 190 pays</p>
+    <p> Recherchez parmi plus de 2 millions d'enfants dans plus de 190 pays</p>
     <div class="form-inline">
       <div class="container">
         <div class="row">
@@ -179,7 +180,7 @@
           </div>
           <% end %>
 
-          <%= image_tag child.user.facebook_picture_url || '', class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
+          <%= image_tag child.user.facebook_picture_url || '' , class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
         </div>
 
       </div>
