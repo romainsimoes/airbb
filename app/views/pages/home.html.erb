@@ -1,5 +1,3 @@
-
-<!-- Banner  -->
 <div class="banner">
   <div class="nvb">
 
@@ -42,9 +40,11 @@
         <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
         <% if current_user %>
+          <li><%= link_to 'Add a Child', new_account_child_path %></li>
           <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% else %>
+          <li><%= link_to 'Add a Child', new_user_session_path %></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
         <% end %>
