@@ -3,9 +3,12 @@
   <a href="/" class="navbar-wagon-brand-btn navbar-wagon-brand-btn"><%= image_tag "baby_logo.png" %></a>
 
 
-    <form action="" class="navbar-wagon-search">
-        <input type="text" id="text" class="navbar-wagon-search-input" placeholder="Search for a child">
-    </form>
+ <!--    <form action="" class="navbar-wagon-search">
+        <input type="text" id="text" class="navbar-wagon-search-input" placeholder="Search for a child"> -->
+        <%= form_tag url_for(:action => 'index', :controller => 'account/children'), class: "navbar-wagon-search", method: :get do %>
+          <%= text_field_tag :center, params[:center], placeholder: "Location Search", class: "navbar-wagon-search-input" %>
+        <% end %>
+ <!--    </form> -->
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">

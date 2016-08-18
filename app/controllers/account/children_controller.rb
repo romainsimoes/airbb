@@ -3,10 +3,12 @@ class Account::ChildrenController < ApplicationController
   before_action :set_child, only: [:show, :edit, :update, :destroy]
 
   def index
-    #fail (params[:boundsL] + ' :::: ' + params[:boundsR]).inspect if params[:boundsL]
-    bounds = params[:bounds].split(',') if params[:bounds]
-    #center = params[:center] ? params[:center].split(',') : [0,0]
-    #center = params[:center].split(',')
+    bounds = params[:bounds] ? params[:bounds].split(',') : [-85, -180, 85, 180]
+    if params[:center]
+      center = params[:center]
+      @center = Center.new(address: center)
+      @center.save
+    end
     @children = Child.within_bounding_box(bounds)
     @children_setting = Child.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(@children_setting) do |child, marker|
