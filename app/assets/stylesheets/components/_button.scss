@@ -6,6 +6,7 @@
   font-weight: lighter;
   opacity: 0.6;
 }
+
 .btn-medium:hover {
   opacity: 1;
   text-decoration: none;
@@ -34,6 +35,19 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.btn-rectangle-navbar {
+  color: #484848;
+  border-left: 1px solid #DCE0E0;
+  border-right: 1px solid #DCE0E0;
+  padding: 18px;
+  padding-top: 19px;
+  margin: 0px 33px;
+}
+
+.btn-rectangle-navbar:hover {
+  background-color: #efefef;
+}
+
 .small-button {
   text-align: center;
   margin-top: 10px;
@@ -45,4 +59,16 @@
     font-weight: 600;
     padding: 6px 15px;
     margin-right: 5px;
+}
+
+.btn-rectangle {
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.btn-rectangle:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
 }
