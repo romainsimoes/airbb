@@ -21,43 +21,80 @@
 <% content_for(:after_js) do %>
   <script>
     $(document).on('ready', function() {
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
+      if (<%= @center.present? %>) {
+        var handler = Gmaps.build('Google');
+        handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.getMap().setCenter({lat: <%= @center ? @center.latitude : 0 %>, lng: <%= @center ? @center.longitude : 0 %>});
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+            handler.getMap().setZoom(25);
+          }
+        });
 
-      var map = handler.getMap();
-      google.maps.event.addListener(map, 'dragend', function(e) {
-        window.setTimeout(function() {
-          bPointsNELat = map.getBounds().getNorthEast().lat();
-          bPointsSWLat = map.getBounds().getSouthWest().lat();
-          bPointsNELng = map.getBounds().getNorthEast().lng();
-          bPointsSWLng = map.getBounds().getSouthWest().lng();
+        var map = handler.getMap();
+        google.maps.event.addListener(map, 'bounds_changed', function(e) {
+          window.setTimeout(function() {
+            bPointsNELat = map.getBounds().getNorthEast().lat();
+            bPointsSWLat = map.getBounds().getSouthWest().lat();
+            bPointsNELng = map.getBounds().getNorthEast().lng();
+            bPointsSWLng = map.getBounds().getSouthWest().lng();
 
-          bPoints = [bPointsSWLat, bPointsSWLng, bPointsNELat, bPointsNELng];
+            bPoints = [bPointsSWLat, bPointsSWLng, bPointsNELat, bPointsNELng];
 
-          $.ajax({
-            url : '/account/children.js?bounds=' + bPoints,
-            type: "GET",
-            success: function(data) {
-              $('#children_list').html(data);
-            },
-            error: function(e) {
-              $('#children_list').html(e.responseText);
-            }
-          });
+            $.ajax({
+              url : '/account/children.js?bounds=' + bPoints,
+              type: "GET",
+              success: function(data) {
+                $('#children_list').html(data);
+              },
+              error: function(e) {
+                $('#children_list').html(e.responseText);
+              }
+            });
 
 
-        }, 300);
-      });
+          }, 1000);
+        });
+      } else {
+        var handler = Gmaps.build('Google');
+        handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+            handler.getMap().setZoom(14);
+          }
+        });
+        console.log('coucou');
+        var map = handler.getMap();
+        google.maps.event.addListener(map, 'bounds_changed', function(e) {
+          window.setTimeout(function() {
+            bPointsNELat = map.getBounds().getNorthEast().lat();
+            bPointsSWLat = map.getBounds().getSouthWest().lat();
+            bPointsNELng = map.getBounds().getNorthEast().lng();
+            bPointsSWLng = map.getBounds().getSouthWest().lng();
 
+            bPoints = [bPointsSWLat, bPointsSWLng, bPointsNELat, bPointsNELng];
+
+            $.ajax({
+              url : '/account/children.js?bounds=' + bPoints,
+              type: "GET",
+              success: function(data) {
+                $('#children_list').html(data);
+              },
+              error: function(e) {
+                $('#children_list').html(e.responseText);
+              }
+            });
+
+
+          }, 1000);
+        });
+      }
     });
   </script>
 <% end %>

@@ -4,6 +4,11 @@ class Account::ChildrenController < ApplicationController
 
   def index
     bounds = params[:bounds] ? params[:bounds].split(',') : [-85, -180, 85, 180]
+    if params[:center]
+      center = params[:center]
+      @center = Center.new(address: center)
+      @center.save
+    end
     @children = Child.within_bounding_box(bounds)
     @children_setting = Child.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(@children_setting) do |child, marker|
