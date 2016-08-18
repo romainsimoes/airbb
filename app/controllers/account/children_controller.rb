@@ -42,7 +42,7 @@ class Account::ChildrenController < ApplicationController
     @child = Child.new(child_params)
     @child.user = current_user
     if @child.save
-      redirect_to account_profile_path(@child.user)
+      redirect_to account_profile_path(@child.user.profile)
     else
       render :new
     end
@@ -59,7 +59,7 @@ class Account::ChildrenController < ApplicationController
   def destroy
     @child.delete
     @child.save
-    redirect_to account_profile_path(@child.user)
+    redirect_to account_profile_path(@child.user.profile)
   end
 
   private

@@ -16,7 +16,9 @@
           <div class="profile-usertitle-name">
           <% if user_signed_in? && current_user.facebook_picture_url %>
               <%= current_user.first_name %>
-              <%= current_user.first_name %>
+              <%= current_user.last_name %>
+              <% else %>
+          <%= @profile.name %>
           <% end %>
           </div>
           <div class="profile-usertitle-description">
@@ -43,15 +45,15 @@
       </div>
     </div>
 
-    <div class="col-md-4 text-inline">
+    <div class="col-md-4 ">
         <h3>MY BABYS</h3>
           <% @children.each do | child |%>
-           <% if child.user == current_user %>
+            <% if child.user == current_user %>
 
             <div class="card-small-image"  style="background-image: url('<%= image_url child.photo %>')">
                 <%= link_to '', account_child_path(child), class: 'card-link' %>
             </div>
-        <% end %>
+          <% end %>
         <% end %>
     <div class="small-button">
       <%= link_to 'Add a child', new_account_child_path, class:"btn btn-success" %>
