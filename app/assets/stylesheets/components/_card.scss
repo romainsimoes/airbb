@@ -63,7 +63,7 @@
 .rating ul {
   position: absolute;
   bottom: 9px;
-  left: 45px;
+  left: 15px;
   margin: 0;
 }
 .rating ul > li {
@@ -138,16 +138,31 @@
   color: red
 }
 
+.card-small-image {
+ border-radius: 5px;
+ width: 100px;
+ height: 100px;
+ background-size: cover !important;
+ color: transparent;
+ margin-top: 0px;
+ padding-top: 0px;
+ margin-bottom: 5px;
+ margin-left: 5px;
+ position: relative;
+ display: inline-block;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover{
+  opacity: 0.1;
+  border-radius: 5px;
+}
 

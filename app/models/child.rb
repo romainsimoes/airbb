@@ -1,9 +1,9 @@
 class Child < ApplicationRecord
   belongs_to :user
-  has_many :availabilities
-  has_many :reviews
-  has_many :bookings
-  has_many :favorites
+  has_many :availabilities, dependent: :destroy
+  has_many :reviews, dependent: :nullify
+  has_many :bookings, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   geocoded_by :address
 

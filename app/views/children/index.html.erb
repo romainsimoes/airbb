@@ -49,7 +49,9 @@
             </div>
           <% end %>
 
-          <img src="https://unsplash.it/60" alt="" class="card-user avatar">
+
+          <%= image_tag child.user.facebook_picture_url || '', class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
+
         </div>
 
       </div>
