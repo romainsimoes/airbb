@@ -64,36 +64,22 @@
     <p>Don't bother having one. Rent one.</p>
   </div>
 
-  <div class="search-field hidden-xs">
-    <p> Recherchez parmi plus de 2 millions d'enfants dans plus de 190 pays</p>
+  <div class="search-field">
+    <p> Recherchez parmi plus de 2 millions d'enfants dans plus de 190 pays.</p>
     <div class="form-inline">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-3">
-
-            <%= form_tag url_for(action: 'index', controller: 'account/children'), method: :get do %>
-              <%= text_field_tag :center, params[:center], placeholder: "Where?", class: "form-control" %>
-            <% end %>
-
-          </div>
-          <div class="col-sm-2"><input type="text" class="form-control" placeholder="Arrivée"></div>
-          <div class="col-sm-2"><input type="text" class="form-control" placeholder="Départ"></div>
-          <div class="col-sm-3"><input type="submit" class="btn btn-primary " value="Rechercher"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="search-field visible-xs">
+      <div class="search-field">
     <div class="container">
       <div class="row">
-        <div class="col-xs-8"><input type="text" class="form-control" placeholder="où"></div>
-        <div class="col-xs-4"><input type="submit" class="btn btn-primary full" value="Rechercher"></div>
+
+        <div class="col-xs-1"></div>
+        <div class="col-sm-3 col-sm-offset-3 col-xs-7 "><input type="text" class="form-control" placeholder="Where ?"></div>
+        <div class="col-xs-4"><input type="submit" class="btn btn-primary " value="Search"></div>
+
       </div>
     </div>
   </div>
-
+    </div>
+  </div>
 </div>
 
 
