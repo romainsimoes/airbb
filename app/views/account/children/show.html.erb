@@ -61,8 +61,11 @@
     </div>
 
     </div>
+
       <div class="col-md-4">
       <h3>REVIEWS</h3>
+      <div class="scroll-small">
+
       <% @reviews.each do |review| %>
         <div class="card-review">
           <% if review.child_id == @child.id %>
@@ -72,9 +75,11 @@
         </div>
       <% end %>
       <div class="small-button">
-        <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
       </div>
     </div>
+        <br>
+       <%= link_to 'Add Review', new_account_child_review_path(@child), class:"btn btn-primary" %>
+       </div>
   </div>
 </div>
 

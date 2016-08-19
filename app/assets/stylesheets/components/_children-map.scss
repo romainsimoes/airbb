@@ -14,7 +14,13 @@
 .scroll {
   overflow-y: auto;
   height: 90vh;
-    overflow: scroll;
+  overflow: scroll;
+}
+
+.scroll-small {
+  overflow-y: auto;
+  height: 40vh;
+  overflow: scroll;
 }
 
 .full-page {
