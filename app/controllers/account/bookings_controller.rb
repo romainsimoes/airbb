@@ -22,7 +22,7 @@ class Account::BookingsController < ApplicationController
     @booking.child = @child
     @booking.user = current_user
     if @booking.save
-      redirect_to account_child_booking_path(@child)
+      redirect_to account_profile_path(current_user)
     else
       render :new
     end

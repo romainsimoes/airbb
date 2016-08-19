@@ -53,10 +53,18 @@
       <p> Description: <%= @child.description %> </p>
     </div>
 
-    <div class="small-button">
+<!--     <div class="small-button">
       <%= link_to 'book me', new_account_child_booking_path(@child), class:"btn btn-medium" %>
       <%= link_to 'availabilities', new_account_child_availability_path(@child), class:"btn btn-medium" %>
-    </div>
+    </div> -->
+
+    <% if @child.user == current_user %>
+      Availability
+      <%= render partial: 'account/availabilities/form', child: @child, url: account_child_availabilities_path(@child), method: :post %>
+    <% else %>
+      Booking
+      <%= render partial: 'account/bookings/form', child: @child, url: account_child_bookings_path(@child), method: :post %>
+    <% end %>
 
     </div>
       <div class="col-md-4">
