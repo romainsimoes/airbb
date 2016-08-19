@@ -79,10 +79,10 @@
   margin: 0;
 }
 
-.card h2:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+// .card h2:hover {
+//   text-decoration: underline;
+//   cursor: pointer;
+// }
 
 .rating p {
   position: absolute;
@@ -96,7 +96,7 @@
 .rating ul {
   position: absolute;
   bottom: 9px;
-  left: 15px;
+  left: 40px;
   margin: 0;
 }
 .rating ul > li {

@@ -19,7 +19,8 @@
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right nvb-dropdown-menu">
             <li><%= link_to 'Profile', account_profile_path(current_user.profile) %></li>
-            <li><%= link_to 'Favorites', account_profile_path(current_user) %></li> <!-- TODO FRANCOIS-->
+            <li><%= link_to 'Favorites', account_favorites_path %></li>
+            <li><%= link_to 'Catalogue', children_path %></li>
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
@@ -34,6 +35,8 @@
 
     </div>
 
+
+
     <!-- Dropdown appearing on mobile only -->
 
     <div class="nvb-item hidden-md hidden-lg">
@@ -43,6 +46,8 @@
           <% if current_user %>
           <li><%= link_to 'Add a Child', new_account_child_path %></li>
           <li><%= link_to 'Profile', account_profile_path(current_user) %></li>
+          <li><%= link_to 'Favorites', account_favorites_path %></li>
+          <li><%= link_to 'Catalogue', children_path %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
           <% else %>
           <li><%= link_to 'Add a Child', new_user_session_path %></li>
@@ -65,9 +70,11 @@
       <div class="search-field">
     <div class="container">
       <div class="row">
+
         <div class="col-xs-1"></div>
         <div class="col-sm-3 col-sm-offset-3 col-xs-7 "><input type="text" class="form-control" placeholder="Where ?"></div>
         <div class="col-xs-4"><input type="submit" class="btn btn-primary " value="Search"></div>
+
       </div>
     </div>
   </div>
@@ -131,7 +138,7 @@
 
   <div class="container">
     <div class="row">
-      <%  @children.each do |child| %>
+      <%  @children.shuffle.first(9).each do |child| %>
       <div class="col-xs-12 col-md-4 col-sm-6">
 
         <div class="card center">
@@ -170,6 +177,16 @@
       <% end %>
     </div>
   </div>
+
+  <div class="container text-center padded">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= link_to 'See more', children_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 
