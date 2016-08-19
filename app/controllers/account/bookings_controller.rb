@@ -52,7 +52,7 @@ class Account::BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:price, :start_time, :end_time, :child_id)
+    params.require(:booking).permit(:start_time, :end_time)
   end
 
 end
