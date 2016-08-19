@@ -61,3 +61,22 @@
     </div>
   </div>
 </div>
+
+<!-- TO DO FRANCOIS -->
+
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-12 ">
+      <h3>FAVORITES</h3>
+      <% @children.each do | child |%>
+      <% if child.user == current_user %>
+      <div class="card-small-image"  style="background-image: url('<%= image_url child.photo %>')">
+        <%= link_to '', account_child_path(child), class: 'card-link' %>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>

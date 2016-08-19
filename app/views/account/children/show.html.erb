@@ -38,8 +38,10 @@
       </div>
 
       <div class="small-button">
+        <% if @child.user == current_user %>
         <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
         <%= link_to 'Delete', account_child_path(@child), class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+         <% end %>
       </div>
     </div>
   </div>
