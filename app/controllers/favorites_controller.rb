@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :set_child_id
 
+
   def create
     @favorite = Favorite.new
     @favorite.user_id = current_user.id

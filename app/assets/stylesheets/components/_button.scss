@@ -7,6 +7,20 @@
   opacity: 0.6;
 }
 
+.btn-medium-2 {
+  color: white;
+  border: 0px solid white;
+  padding: 10px 20px 10px 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-medium-2:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .btn-medium:hover {
   opacity: 1;
   text-decoration: none;
@@ -27,11 +41,13 @@
 
 .btn-rectangle-navbar {
   color: #484848;
-  border-left: 1px solid #DCE0E0;
   border-right: 1px solid #DCE0E0;
   padding: 18px;
   padding-top: 19px;
   margin: 0px 33px;
+  margin-left: 0;
+  border-left: 0;
+
 }
 
 .btn-rectangle-navbar:hover {

@@ -24,14 +24,11 @@ padding-top: 20px;
   color: #484848;
 }
 
-#full-page {
-  height: 85vh;
+.border-radius-right {
+  border-radius: 2px 0px 0px 2px;
+
 }
 
-.title {
-  margin: 0;
-}
-
-.center {
-  margin: 30px auto;
+.border-radius-left {
+  border-radius: 0px 2px 2px 0px;
 }

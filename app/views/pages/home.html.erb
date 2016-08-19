@@ -12,6 +12,7 @@
       <div class="nvb-item">
         <div class="dropdown">
           <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle" %>
+          <%= link_to 'Catalogue', children_path, class:"btn-medium-2" %>
           <% if user_signed_in? && current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
           <% else %>
@@ -27,9 +28,10 @@
       </div>
       <% else %>
       <ul class="list-inline">
-        <li><%= link_to 'Add a Child', new_user_session_path, class:"btn btn-rectangle" %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path, class:" btn-medium-white" %></li>
-        <li><%= link_to 'Log in', new_user_session_path, class:" btn-medium-white" %></li>
+        <li><%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle" %></li>
+        <li><%= link_to 'Catalogue', children_path, class:"btn-medium-white" %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class:"btn-medium-white" %></li>
+        <li><%= link_to 'Log in', new_user_session_path, class:"btn-medium-white" %></li>
       </ul>
       <% end %>
 
@@ -50,7 +52,7 @@
           <li><%= link_to 'Catalogue', children_path %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
           <% else %>
-          <li><%= link_to 'Add a Child', new_user_session_path %></li>
+          <li><%= link_to 'Add a Child', new_account_child_path %></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
           <% end %>
@@ -72,8 +74,8 @@
       <div class="row">
 
         <div class="col-xs-1"></div>
-        <div class="col-sm-3 col-sm-offset-3 col-xs-7 "><input type="text" class="form-control" placeholder="Where ?"></div>
-        <div class="col-xs-4"><input type="submit" class="btn btn-primary " value="Search"></div>
+        <div class="col-sm-3 col-sm-offset-3 col-xs-7 "><input type="text" class="form-control border-radius-right" placeholder="Where ?"></div>
+        <div class="col-xs-4"><input type="submit" class="btn btn-primary border-radius-left" value="Search"></div>
 
       </div>
     </div>
@@ -143,7 +145,7 @@
       <div class="col-xs-12 col-md-4 col-sm-6">
 
         <div class="card center">
-          <div class="image"  style="background-image: url('<%= image_url child.photo %>')">
+          <div class="image"  style="background-image: linear-gradient(50deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('<%= image_url child.photo %>')">
 
             <h3><%= child.name %></h3>
             <%= link_to '', account_child_path(child), class: 'card-link' %>
@@ -152,23 +154,24 @@
 
           <% ratings = [] %>
           <% child.reviews.each do |review| %>
-          <% ratings << review.rating %>
+            <% ratings << review.rating %>
           <% end %>
           <% if !ratings.empty? %>
-          <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+            <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
           <% end %>
 
           <% if !ratings.empty? %>
-          <div class="rating">
-            <ul class="list-inline">
-              <% average_rating.times do |star| %>
-              <i class="fa fa-star" style="color: #ffb400"></i>
-              <% end %>
-              <% (5 - average_rating).times do |star| %>
-              <i class="fa fa-star" style="color: #cacccd"></i>
-              <% end %>
-            </ul>
-          </div>
+            <div class="rating">
+              <p><%= average_rating %></p>
+              <ul class="list-inline">
+                <% average_rating.times do |star| %>
+                  <i class="fa fa-star" style="color: #ffb400"></i>
+                <% end %>
+                <% (5 - average_rating).times do |star| %>
+                  <i class="fa fa-star" style="color: #cacccd"></i>
+                <% end %>
+              </ul>
+            </div>
           <% end %>
 
           <%= image_tag child.user.facebook_picture_url || '' , class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
@@ -179,7 +182,7 @@
     </div>
   </div>
 
-  <div class="container text-center padded">
+  <div class="container text-center padded-small">
     <div class="row">
       <div class="col-sm-4 col-sm-offset-4">
         <%= link_to 'See more', children_path, class:"btn btn-medium" %>
