@@ -65,3 +65,4 @@ end
 
 gem 'omniauth-facebook'
 gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails'

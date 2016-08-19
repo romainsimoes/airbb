@@ -51,7 +51,7 @@ class Account::AvailabilitiesController < ApplicationController
   end
 
   def availability_params
-    params.require(:availability).permit(:price, :start_time, :end_time, :child_id)
+    params.require(:availability).permit(:price, :start_time, :end_time)
   end
 
 end

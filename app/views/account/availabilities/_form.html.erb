@@ -1,11 +1,60 @@
+<%= form_for @availability, url: account_child_availabilities_path(@child), method: :post, class: 'input-daterange input-group datepicker', id: 'datepicker' do |f| %>
+    <div>
+      <%= f.text_field :start_time, id: 'dpd1', class: 'input-sm form-control' %>
+      <span class="input-group-addon">to</span>
+      <%= f.text_field :end_time, id: 'dpd2', class: 'input-sm form-control' %>
+      <div>
+        <%= f.number_field :price, class: 'input-sm form-control' %>
+      </div>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>
 
-<%= simple_form_for availability, url: url do |f| %>
-  <%= f.error_notification %>
+<% content_for(:after_js) do %>
+  <script>
 
+    $(function () {
+      var nowTemp = new Date();
+      var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+      $('#dpd1').datepicker({
+        startDate: new Date(),
+        autoclose: true,
+        datesDisabled: <%= raw @availabilities %>
+      });
+      $('#dpd2').datepicker({
+        startDate: new Date(),
+        autoclose: true,
+        datesDisabled: <%= raw @availabilities %>
+      });
+    });
 
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.input :price %>
+      // checkin = $('#dpd1').datepicker({
+      //     beforeShowDay: function(date) {
+      //         console.log(date);
+      //         return date.valueOf() >= now.valueOf();
+      //     }
+    //   }).on('changeDate', function(ev) {
+    //       if (ev.date.valueOf() > checkout.date.valueOf()) {
+    //           console.log('DATE', date);
+    //           var newDate = new Date(ev.date)
+    //           newDate.setDate(newDate.getDate() + 1);
+    //           checkout.setValue(newDate);
+    //           checkout.setDate(newDate);
+    //           checkout.update();
+    //       }
+    //       //checkin.hide();
+    //       $('#dpd1')[0].focus();
+    //   }).data('#datepicker');
+    //   var checkout = $('#dpd2').datepicker({
+    //       beforeShowDay: function(date) {
+    //           return date.valueOf() > checkin.date.valueOf();
+    //       }
+    //   }).on('changeDate', function(ev) {
+    //       checkout.hide();
+    //   }).data('datepicker');
+    // });
 
-  <%= f.button :submit, class:"btn btn-success" %>
+  </script>
 <% end %>

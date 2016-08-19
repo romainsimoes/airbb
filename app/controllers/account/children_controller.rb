@@ -22,7 +22,9 @@ class Account::ChildrenController < ApplicationController
   end
 
   def show
-    @availabilities = Availability.all
+    date_killer
+    @availability = Availability.new
+    @booking = Booking.new
     @reviews = @child.reviews
     @child_coordinates = { lat: @child.latitude, lng: @child.longitude }
     @hash = Gmaps4rails.build_markers(@child) do |child, marker|
@@ -63,6 +65,33 @@ class Account::ChildrenController < ApplicationController
   end
 
   private
+
+  def date_killer
+    @availabilities = []
+    @availabilities_formatted = []
+    if Availability.all
+      Availability.all.each do |availability|
+        if availability.start_time && availability.end_time
+          date = availability.start_time
+          while date.strftime("%m/%d/%Y") <= availability.end_time.strftime("%m/%d/%Y")
+            @availabilities << date.strftime("%m/%d/%Y")
+            date_str = date.strftime("%m/%d/%Y")
+
+            @availabilities_formatted << date
+            date += 1.day
+          end
+        end
+      end
+    end
+    # @availabilities.each do |date|
+    #   date_inc = DateTime.now
+    #   while date_inc.strftime("%m/%d/%Y") <= DateTime.now.strftime("%m/%d/%Y")
+    #     @ << date.strftime("%m/%d/%Y")
+    #     date += 1.day
+    #     puts date
+    #   end
+    # end
+  end
 
   def set_child
     @child = Child.find(params[:id])

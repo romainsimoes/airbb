@@ -1,36 +1,68 @@
-<div class="input-daterange input-group" id="datepicker">
-    <input type="text" class="input-sm form-control" name="start" />
-    <span class="input-group-addon">to</span>
-    <input type="text" class="input-sm form-control" name="end" />
-</div>
+<%= form_for @booking, url: account_child_availabilities_path(@child), method: :post, class: 'input-daterange input-group', id: 'datepicker' do |f| %>
+    <div>
+      <%= f.text_field :start_time, id: 'dpd3', class: 'input-sm form-control' %>
+      <span class="input-group-addon">to</span>
+      <%= f.text_field :end_time, id: 'dpd4', class: 'input-sm form-control' %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+<% end %>
 
 <% content_for(:after_js) do %>
   <script>
-    $(document).on('ready', function() {
 
-      $('#datepicker.input-daterange').datepicker({
-        format: "dd/mm/yy",
-        todayBtn: "linked",
-        multidateSeparator: "to ",
-        todayHighlight: true,
-        datesDisabled: ['08/06/2016', '08/21/2016'],
-        toggleActive: true
+    $(function () {
+
+      var nowTemp = new Date();
+      var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+      $('#dpd3').datepicker({
+        beforeShowDay: function(date) {
+          if (<%= raw @availabilities %>.includes(String(moment(date).format('L')))) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        startDate: new Date()
       });
-
+      $('#dpd4').datepicker({
+        beforeShowDay: function(date) {
+          if (<%= raw @availabilities %>.includes(String(moment(date).format('L')))) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        startDate: new Date(),
+      });
     });
+
+      // checkin = $('#dpd1').datepicker({
+      //     beforeShowDay: function(date) {
+      //         console.log(date);
+      //         return date.valueOf() >= now.valueOf();
+      //     }
+    //   }).on('changeDate', function(ev) {
+    //       if (ev.date.valueOf() > checkout.date.valueOf()) {
+    //           console.log('DATE', date);
+    //           var newDate = new Date(ev.date)
+    //           newDate.setDate(newDate.getDate() + 1);
+    //           checkout.setValue(newDate);
+    //           checkout.setDate(newDate);
+    //           checkout.update();
+    //       }
+    //       //checkin.hide();
+    //       $('#dpd1')[0].focus();
+    //   }).data('#datepicker');
+    //   var checkout = $('#dpd2').datepicker({
+    //       beforeShowDay: function(date) {
+    //           return date.valueOf() > checkin.date.valueOf();
+    //       }
+    //   }).on('changeDate', function(ev) {
+    //       checkout.hide();
+    //   }).data('datepicker');
+    // });
+
   </script>
-<% end %>
-
-<%= simple_form_for [@child, current_user, booking], url: url do |f| %>
-  <%= f.error_notification %>
-
-  <% @child.availabilities.each do |availability| %>
-    <li>Available FROM: <%= availability.start_time %>
-    TO: <%= availability.end_time %></li>
-  <% end %>
-
-  <%= f.date_select :start_time %>
-  <%= f.date_select :end_time %>
-
-  <%= f.button :submit, class:"btn btn-success" %>
 <% end %>
