@@ -19,6 +19,7 @@
     <div class="navbar-wagon-item padding-plus-navbar-item">
       <div class="dropdown">
 
+      <%= link_to 'Catalogue', children_path, class:"btn btn-rectangle-navbar", id:"margin-left-none"  %>
       <%= link_to 'Add a Child', new_account_child_path, class:"btn btn-rectangle-navbar" %>
         <% if user_signed_in? && current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class:"avatar-large dropdown-toggle", id: "nvb-menu", 'data-toggle' => "dropdown"  %>
