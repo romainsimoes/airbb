@@ -75,22 +75,11 @@ class Account::ChildrenController < ApplicationController
           date = availability.start_time
           while date.strftime("%m/%d/%Y") <= availability.end_time.strftime("%m/%d/%Y")
             @availabilities << date.strftime("%m/%d/%Y")
-            date_str = date.strftime("%m/%d/%Y")
-
-            @availabilities_formatted << date
             date += 1.day
           end
         end
       end
     end
-    # @availabilities.each do |date|
-    #   date_inc = DateTime.now
-    #   while date_inc.strftime("%m/%d/%Y") <= DateTime.now.strftime("%m/%d/%Y")
-    #     @ << date.strftime("%m/%d/%Y")
-    #     date += 1.day
-    #     puts date
-    #   end
-    # end
   end
 
   def set_child
