@@ -1,11 +1,11 @@
 <%= simple_form_for profile, url: account_profile_path(profile) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :name, placeholder: 'Le Petit Nicolas' %>
-  <%= f.input :address, placeholder: 'Rue de la petite Eglise' %>
+  <%= f.input :name, placeholder: 'Name' %>
+  <%= f.input :address, placeholder: 'Address' %>
   <%= f.input :age, placeholder: 'age', as: :integer%>
   <%= f.input :sex, placeholder: "M" %>
-  <%= f.input :description, placeholder: 'Interessé par les petits' %>
+  <%= f.input :description, placeholder: 'Description' %>
   <%= f.input :credit_card %>
   <br>
   <%= f.button :submit, class:"btn btn-success" %>

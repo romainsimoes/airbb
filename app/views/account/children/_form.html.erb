@@ -1,11 +1,11 @@
 <%= simple_form_for child, url: url do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :name, placeholder: 'Le Petit Nicolas' %>
-  <%= f.input :address, placeholder: 'Rue de la petite Eglise' %>
-  <%= f.input :sex, placeholder: "It's a boy" %>
-  <%= f.input :age, placeholder: 'age', as: :integer%>
-  <%= f.input :description, placeholder: 'Gentil, doué et travailleur' %>
+  <%= f.input :name, placeholder: 'Name' %>
+  <%= f.input :address, placeholder: 'Address' %>
+  <%= f.input :sex, placeholder: "M" %>
+  <%= f.input :age, placeholder: 'Age', as: :integer%>
+  <%= f.input :description, placeholder: 'Description' %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
   <br>
