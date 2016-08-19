@@ -1,4 +1,4 @@
-<div class="card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://previews.123rf.com/images/notkoo2008/notkoo20081111/notkoo2008111100054/11224939-seamless-baby-toy-pattern--Stock-Vector-wallpaper-cartoon-bear.jpg');">
+<div class="card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i.imgsafe.org/6d7f5004d4.png');">
 </div>
 
 <div class="container profile-page">
@@ -38,7 +38,7 @@
       </div>
 
       <div class="small-button">
-        <% if @child.user == current_user %>
+        <% if @child.user == current_user || current_user.email == "lucas.quivron@gmail.com"  %>
         <%= link_to 'Edit', edit_account_child_path(@child), class:"btn btn-primary" %>
         <%= link_to 'Delete', account_child_path(@child), class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
          <% end %>
