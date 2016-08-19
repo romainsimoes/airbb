@@ -1,15 +1,51 @@
-<h1>Your favorites Children</h1>
+<div class="grey">
+  <h1 class="text-center title intertext">Your favorites Children</h1>
 
+  <div class="row">
+  <% @favorites.each do |favorite| %>
+      <% if favorite.user_id == current_user.id %>
+    <div class="col-sm-4">
 
-<% @favorites.each do |favorite| %>
-  <% if favorite.user_id == current_user.id %>
-    <ul>
-      <li>
-      <%= favorite.child.name %>
-      <%= link_to "delete", account_favorite_path(favorite.child), method: :delete %>
-      </li>
-    </ul>
-  <% end %>
-<% end %>
+      <div class="card center">
+        <div class="image" style="background-image: url('<%= image_url favorite.child.photo %>')">
+          <h3><%= favorite.child.name %></h3>
+          <%= link_to '', account_child_path(favorite.child), class: 'card-link' %>
 
-<%= link_to 'back', children_path %>
+          <%= link_to account_favorite_path(favorite.child), method: :delete, class: "card-favorite favorite" do %>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          <% end %>
+
+        </div>
+        <h2><%= favorite.child.description %></h2>
+
+        <% ratings = [] %>
+        <% favorite.child.reviews.each do |review| %>
+          <% ratings << review.rating %>
+        <% end %>
+        <% if !ratings.empty? %>
+          <% average_rating = (ratings.inject{ |sum, el| sum + el }.to_f / ratings.size).round %>
+        <% end %>
+
+        <% if !ratings.empty? %>
+          <div class="rating">
+            <p><%= average_rating %></p>
+            <ul class="list-inline">
+              <% average_rating.times do |star| %>
+                <i class="fa fa-star" style="color: #ffb400"></i>
+              <% end %>
+              <% (5 - average_rating).times do |star| %>
+                <i class="fa fa-star" style="color: #cacccd"></i>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= image_tag favorite.child.user.facebook_picture_url || '', class:"card-user avatar-xlarge", 'data-toggle' => "dropdown"  %>
+
+      </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
