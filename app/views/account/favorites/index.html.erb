@@ -1,5 +1,15 @@
 <div class="grey">
-  <h1 class="text-center title intertext">Your favorites Children</h1>
+
+
+<div class="container ">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 intertext text-center">
+      <h1>You have <%=  @favorites.size %> favorites.</h1>
+        <h2>Your favorites children are one click away.</h2>
+    </div>
+  </div>
+</div>
+
 
   <div class="row">
   <% @favorites.each do |favorite| %>
